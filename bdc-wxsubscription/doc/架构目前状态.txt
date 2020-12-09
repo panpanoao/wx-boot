@@ -1,0 +1,49 @@
+------------架构技术栈----------
+spring+spring boot+mybatis
+插件：mybatis-plus,mybatis-plus generate
+数据库：mysql
+中间件：redis
+
+
+---------当前架构---------------------------
+@OperateLog()注解实现日志切面拦截添加到数据库
+登录拦截（采用redis）
+@Transactional 事务配置完成(将需要事务的方法或者类加上此注解抛异常自动回滚)
+集成redis
+@Validated 注解检验字段 配合注解有  @Notnull @NotBalck @Max @Min  等
+数据库定时备份功能
+@Slf4j加在类上 通过log.info（“”） 错误信息使用log.error("")等方法实现打印日志信息 实现日志操作
+所有添加修改自动装入参数  修改人  修改时间  添加人等不需要对这些参数进行赋值
+@LoginUser注解获取当前登录用户
+所有删除都走逻辑删除  delFlag  默认为0  1删除   （需要定期清理数据）不需要编写代码  直接调用service.removeById
+
+
+
+
+----------开发规范---------------
+所有请求都通过R  code编码  msg错误信息   data返回数据
+所有查询使用 GetMapper();
+所有添加修改使用 PostMapping();
+简单删除可用GetMapper
+所有单表增删改只用QueryWapper<T> 编写    不是太复杂的多表查询也尽量避免编写xml文件
+分页采用Ipage<T>工具
+业务复杂修改使用UpdateWapper<T>   具体帮助文档百度搜索   mybatis-plus开发api
+
+目前就这些。。。。。。。。。。。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

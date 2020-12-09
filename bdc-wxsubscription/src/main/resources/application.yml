@@ -1,0 +1,5 @@
+spring:
+  #生产环境
+  profiles:
+    active: dev
+  #热部署配置
