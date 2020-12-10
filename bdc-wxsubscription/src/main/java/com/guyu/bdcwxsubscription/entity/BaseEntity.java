@@ -53,5 +53,11 @@ public class BaseEntity implements Serializable {
     @TableLogic
     private Integer delFlag;
 
+    /**
+     * 地区识别码
+     */
+    @TableField(value = "area_code",fill= FieldFill.INSERT)
+    private String areaCode;
+
 
 }

@@ -7,9 +7,11 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.guyu.bdcwxsubscription.entity.WxPersonnelEntity;
 import com.guyu.bdcwxsubscription.constant.CommonParameters;
 import com.guyu.bdcwxsubscription.mapper.WxPersonnelMapper;
+import com.guyu.bdcwxsubscription.query.BaseQuery;
 import com.guyu.bdcwxsubscription.service.WxPersonnelService;
 import com.guyu.bdcwxsubscription.utils.MyMD5Util;
 import com.guyu.bdcwxsubscription.utils.RedisCache;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,28 +34,17 @@ public class WxPersonnelServiceImpl extends ServiceImpl<WxPersonnelMapper, WxPer
     @Autowired
     private RedisCache redisCache;
 
-    /**
-     * test
-     *
-     * @return
-     */
-    @Override
-    public IPage<WxPersonnelEntity> findAll() {
-        return baseMapper.selectPage(new Page<>(1, 10), new QueryWrapper<WxPersonnelEntity>());
-    }
 
-    /**
-     * 事务测试
-     *
-     * @param wxPersonnelEntity
-     * @return
-     */
     @Override
-    @Transactional
-    public int add(WxPersonnelEntity wxPersonnelEntity) {
-        int i = baseMapper.insert(wxPersonnelEntity);
-        int j = 1 / 0;
-        return i;
+    public IPage<WxPersonnelEntity> pageList(BaseQuery query,WxPersonnelEntity personnelEntity) {
+        Page<WxPersonnelEntity> page=new Page<>(query.getPage(),query.getSize());
+        QueryWrapper<WxPersonnelEntity> queryWrapper=new QueryWrapper<>();
+        if(!StringUtils.isBlank(personnelEntity.getUserName())){
+            queryWrapper.like("user_name",personnelEntity.getUserName());
+        }
+        queryWrapper.eq("area_code",getUser().getAreaCode());
+        queryWrapper.orderByDesc("create_time");
+        return baseMapper.selectPage(page,queryWrapper);
     }
 
     /**
@@ -79,14 +70,11 @@ public class WxPersonnelServiceImpl extends ServiceImpl<WxPersonnelMapper, WxPer
 
 
     /**
-     * 登出当前用户
-     *
-     * @param request
-     * @param response
+     * 用户登出
      * @return
      */
     @Override
-    public Boolean outLogin(HttpServletRequest request, HttpServletResponse response) {
+    public Boolean outLogin() {
         redisCache.deleteObject(CommonParameters.LOGIN);
         return true;
     }

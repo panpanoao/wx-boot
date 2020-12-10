@@ -1,6 +1,7 @@
 package com.guyu.bdcwxsubscription.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.guyu.bdcwxsubscription.config.annotation.TableReMarks;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -17,6 +18,7 @@ import lombok.experimental.Accessors;
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
 @TableName("wx_personnel")
+@TableReMarks("微信用户表")
 public class WxPersonnelEntity extends BaseEntity {
 
     private static final long serialVersionUID=1L;
@@ -51,10 +53,6 @@ public class WxPersonnelEntity extends BaseEntity {
      */
       private Integer version;
 
-      /**
-     * 地区识别码
-     */
-      private String areaCode;
 
 
 }

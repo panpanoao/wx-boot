@@ -26,6 +26,7 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
         WxPersonnelEntity wxPersonnel = redisCache.getCacheObject(CommonParameters.LOGIN);
         this.setFieldValByName("createTime", new Date(), metaObject);
         this.setFieldValByName("delFlag", 0, metaObject);
+        this.setFieldValByName("areaCode", wxPersonnel.getAreaCode(), metaObject);
         this.setFieldValByName("createMan", wxPersonnel.getUserName(), metaObject);
     }
 

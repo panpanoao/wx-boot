@@ -62,13 +62,14 @@ public class CodeGenerator {
         strategy.setEntityLombokModel(true); // lombok 模型 @Accessors(chain = true)
         strategy.setLogicDeleteFieldName("del_flag");//逻辑删除字段名
         strategy.setEntityBooleanColumnRemoveIsPrefix(true);//去掉布尔值的is_前缀
-        strategy.setInclude("ys_sa_asa");//生成指定表名
+        strategy.setInclude(new String[]{"wxcms_account_fans","wx_config","wx_feedback","wx_authentication","wx_bs_guide","wx_reservation_item","wx_reservation_rule","wx_reservation_man","wx_mechanism",});//生成指定表名
         //自动填充
         TableFill createTime = new TableFill("create_time", FieldFill.INSERT);
         TableFill createMan = new TableFill("create_man", FieldFill.INSERT);
         TableFill delFlag = new TableFill("del_flag", FieldFill.INSERT);
         TableFill updateTime = new TableFill("update_time", FieldFill.UPDATE);
         TableFill updateMan = new TableFill("update_man", FieldFill.UPDATE);
+        TableFill areaCode = new TableFill("area_code", FieldFill.INSERT);
 
         ArrayList<TableFill> tableFills = new ArrayList<>();
         tableFills.add(createTime);
@@ -76,15 +77,16 @@ public class CodeGenerator {
         tableFills.add(delFlag);
         tableFills.add(updateTime);
         tableFills.add(updateMan);
+        tableFills.add(areaCode);
         strategy.setTableFillList(tableFills);
         strategy.setRestControllerStyle(true); //restful api风格控制器
         strategy.setControllerMappingHyphenStyle(true); //url中驼峰转连字符
         mpg.setStrategy(strategy);
 
         //设置BaseEntity(基类实体)
-        strategy.setSuperEntityClass("com.guyu.bdcwxsubscription.entity");
+        strategy.setSuperEntityClass("com.guyu.bdcwxsubscription.BaseEntity");
         // 填写BaseEntity中的公共字段
-        strategy.setSuperEntityColumns("id", "create_time", "create_man", "del_flag", "update_time", "update_man");
+        strategy.setSuperEntityColumns("id", "create_time", "create_man", "del_flag", "update_time", "update_man","area_code");
         // 6、执行
         mpg.execute();
 

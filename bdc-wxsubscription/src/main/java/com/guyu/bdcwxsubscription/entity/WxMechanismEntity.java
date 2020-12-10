@@ -8,45 +8,43 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 日志表
+ * 机构表
  * </p>
  *
  * @author 黄盼
- * @since 2020-12-06
+ * @since 2020-12-10
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
-@TableName("wx_logs")
-@TableReMarks("日志表")
-public class WxLogsEntity extends BaseEntity {
+@TableName("wx_mechanism")
+@TableReMarks("机构表")
+public class WxMechanismEntity extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * 日志类型(0记录日志 1异常日志)
+     * 机构名称
      */
-    private Integer logType;
+    private String mcName;
 
     /**
-     * 日志内容
+     * 机构LOGO
      */
-    private String logContent;
+    private String mcLogo;
 
     /**
-     * 请求ip
+     * 机构简介
      */
-    private String requestIp;
+    private String mcContent;
+
+    private String mcBaunell;
 
     /**
-     * 请求地址
+     * 版本号
      */
-    private String requestUrl;
+    private Integer version;
 
-    /**
-     * 浏览器
-     */
-    private String requestWeb;
 
 
 }

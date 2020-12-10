@@ -8,45 +8,45 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 日志表
+ *
  * </p>
  *
  * @author 黄盼
- * @since 2020-12-06
+ * @since 2020-12-10
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
-@TableName("wx_logs")
-@TableReMarks("日志表")
-public class WxLogsEntity extends BaseEntity {
+@TableName("wx_reservation_rule")
+@TableReMarks("微信预约人员表")
+public class WxReservationRuleEntity extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * 日志类型(0记录日志 1异常日志)
+     * 规则1春季，2夏季，3秋季，4冬季
      */
-    private Integer logType;
+    private Integer dictval;
 
     /**
-     * 日志内容
+     * 开始时间点
      */
-    private String logContent;
+    private String startime;
 
     /**
-     * 请求ip
+     * 结束时间点
      */
-    private String requestIp;
+    private String endtime;
 
     /**
-     * 请求地址
+     * 可预约数配置
      */
-    private String requestUrl;
+    private Integer srNum;
 
     /**
-     * 浏览器
+     * 版本号
      */
-    private String requestWeb;
+    private Integer version;
 
 
 }

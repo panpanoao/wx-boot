@@ -1,9 +1,12 @@
 package com.guyu.bdcwxsubscription.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.guyu.bdcwxsubscription.entity.WxPersonnelEntity;
+import com.guyu.bdcwxsubscription.query.BaseQuery;
 
+import javax.management.Query;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,15 +20,11 @@ import javax.servlet.http.HttpServletResponse;
  */
 public interface WxPersonnelService extends IService<WxPersonnelEntity> {
 
-    IPage<WxPersonnelEntity> findAll();
-
-
-    int add(WxPersonnelEntity wxPersonnelEntity);
+    IPage<WxPersonnelEntity> pageList(BaseQuery query, WxPersonnelEntity wxPersonnelEntity);
 
     WxPersonnelEntity login(String loginName, String password);
 
-
-    Boolean outLogin(HttpServletRequest request, HttpServletResponse response);
+    Boolean outLogin();
 
     WxPersonnelEntity getUser();
 

@@ -5,7 +5,6 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
-import java.util.regex.Pattern;
 
 import javax.servlet.ReadListener;
 import javax.servlet.ServletInputStream;

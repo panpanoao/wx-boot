@@ -1,20 +1,23 @@
 package com.guyu.wxboxs;
 
-import com.guyu.bdcwxsubscription.utils.RedisCache;
+
+import org.apache.commons.lang.StringUtils;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.boot.test.context.SpringBootTest;
 
-import javax.servlet.http.HttpServletRequest;
-import java.io.FileNotFoundException;
 
 @SpringBootTest
 class WxboxsApplicationTests {
-    @Autowired
-    RedisCache redisCache;
+
 
     @Test
-    void contextLoads(HttpServletRequest request) throws FileNotFoundException {
+    void contextLoads() {
+        String tx="";
+        if(StringUtils.isBlank(tx)){
+            System.out.println("1");
+        }
+
      /*   System.out.println("11");
      redisCache.setCacheObject("aa","123");
         String aa=redisCache.getCacheObject("aa");
